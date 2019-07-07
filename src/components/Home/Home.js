@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import DangerButton from '../DangerButton/DangerButton';
 import './Home.sass';
 
 const Home = (props) => {
   const [count, setData] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(false);
-  });
 
   const Button = styled.button`
     background: #FFF;
@@ -42,31 +37,25 @@ const Home = (props) => {
     console.log("DANGER: " + message);
   }
 
-  if (loading === false) {
-    return (
-      <div className="app">
-        <Button>First</Button>
-        <Button>Second</Button>
-        <PrimaryButton>Primary</PrimaryButton>
-        <DangerButton 
-          text="Danger" 
-          active={ false } 
-          dangerFunction={() => dangerFunction("Danger Message here!")} 
-        />
-        <DangerButton text="Active" active={ true } />
+  return (
+    <div className="app">
+      <Button>First</Button>
+      <Button>Second</Button>
+      <PrimaryButton>Primary</PrimaryButton>
+      <DangerButton 
+        text="Danger" 
+        active={ false } 
+        dangerFunction={() => dangerFunction("Danger Message here!")} 
+      />
+      <DangerButton text="Active" active={ true } />
 
-        <h1 className="title">Hello React!</h1>
-        <Button onClick={() => setData(count + 1)}>+</Button>
-        <Button onClick={() => setData(count - 1)}>-</Button>
-        <Button onClick={() => setData(0)}>Reset</Button>
-        <p>Count: {count}</p>
-      </div>
-    )
-  } else {
-    return (
-      <h1>Loading...</h1>
-    )
-  }
+      <h1 className="title">Hello React!</h1>
+      <Button onClick={() => setData(count + 1)}>+</Button>
+      <Button onClick={() => setData(count - 1)}>-</Button>
+      <Button onClick={() => setData(0)}>Reset</Button>
+      <p>Count: {count}</p>
+    </div>
+  )
 }
 
 export default Home
